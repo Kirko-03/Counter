@@ -1,23 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Counter} from "./Counter";
+import { CountBuilder} from './CountBilder';
 
 function App() {
-  return (
+    const [value,setValue] = useState(0)
+    const [max,setMax] = useState(10)
+    const [min,setMin] = useState(0)
+    return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <CountBuilder min={min} setMin={setMin} setMax={setMax} max={max} />
+          <Counter value={value} setValue={setValue} maxValue={max} minValue={min}/>
       </header>
     </div>
   );
