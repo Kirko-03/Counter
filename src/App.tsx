@@ -6,12 +6,14 @@ import { CountBuilder} from './CountBilder';
 function App() {
     const [value,setValue] = useState(0)
     const [max,setMax] = useState(10)
-    const [min,setMin] = useState(0)
+    const [start,setStart] = useState(0)
+    const [remember,setRemember] = useState(false)
+
     return (
     <div className="App">
       <header className="App-header">
-       <CountBuilder min={min} setMin={setMin} setMax={setMax} max={max} />
-          <Counter value={value} setValue={setValue} maxValue={max} minValue={min}/>
+       <CountBuilder value={value}  setValue={setValue} remember={remember} setRemember={setRemember} start={start} setStart={setStart} setMax={setMax} max={max} />
+          <Counter value={value} remember={remember} setValue={setValue} maxValue={max} startValue={start}/>
       </header>
     </div>
   );

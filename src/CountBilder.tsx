@@ -1,20 +1,25 @@
 import s from './CountBilder.module.css'
 import {MaxValue} from "./MaxValue";
-import {MinValue} from "./MinValue";
 import {FC} from "react";
-import { SetValue } from './SetValue';
-type BuilderType={
-    max:number
-    setMax:(max:number)=>void
-    min:number
-    setMin:(min:number)=>void
+import {SetValue} from './SetValue';
+import {StartValue} from "./StartValue";
+
+type BuilderType = {
+    max: number
+    remember: boolean
+    setRemember: (remember: boolean) => void
+    setMax: (max: number) => void
+    start: number
+ setValue:(value:number)=>void
+    setStart: (min: number) => void
+    value: number
 }
 
-export const CountBuilder:FC<BuilderType> = ({max,setMax,min,setMin}) => {
+export const CountBuilder: FC<BuilderType> = ({max, setMax, start, setStart, setRemember,remember,setValue}) => {
 
     return <div className={s.counterForm}>
-        <MaxValue max={max} setMax={setMax} min={min}/>
-        <MinValue min={min} setMin={setMin} max={max}/>
-        <SetValue />
+        <MaxValue setRemember={setRemember} remember={remember} max={max} setMax={setMax} min={start}/>
+        <StartValue setRemember={setRemember} start={start} setStart={setStart} max={max}/>
+        <SetValue  startValue={start} setStart={setStart} setMax={setMax} setValue={setValue} setRemember={setRemember} remember={remember} maxValue={max}/>
     </div>
 }

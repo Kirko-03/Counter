@@ -1,17 +1,30 @@
 import s from './Counter.module.css'
-import {FC} from "react";
+import {FC, useEffect} from "react";
 
 type CounterType = {
     value: number
     setValue: (value: number) => void
     maxValue: number
-    minValue: number
+    startValue: number
+    remember:boolean
 }
-export const Counter: FC<CounterType> = ({value, setValue, maxValue, minValue}) => {
+export const Counter: FC<CounterType> = ({value, setValue, maxValue, startValue,remember}) => {
+
+    useEffect(()=>{
+       let value = localStorage.getItem('value')
+        if(value){
+            let newValue = JSON.parse(value)
+            setValue(newValue)
+        }
+    },[setValue])
+
+    useEffect(()=>{
+        localStorage.setItem('value',JSON.stringify(value))
+    },[value])
 
     const buttonStyle = {
-        color: minValue < 0 || minValue > maxValue ? 'black' : '',
-        background: minValue < 0 || maxValue === minValue || minValue > maxValue ? 'red' : 'green'
+        color: startValue < 0 || startValue > maxValue ? 'black' : '',
+        background: startValue < 0 || maxValue === startValue || startValue > maxValue ? 'red' : 'green'
     }
 
     const incFunc = () => {
@@ -20,25 +33,44 @@ export const Counter: FC<CounterType> = ({value, setValue, maxValue, minValue}) 
         }
     }
     const decFunc = () => {
-        if (value > minValue) {
+        if (value > startValue) {
             setValue(value - 1)
         }
+    }
+    const ifer = () =>{
+        if( startValue < 0||maxValue<=startValue){
+            return 'Incorrect'
+        }
+        else if(remember){
+            return 'enter'
+        }
+        else{
+            return  value
+        }
+    }
+    const reset = () => {
+        setValue(startValue)
     }
     return <div className={s.counterForm}>
         <div className={s.value}
              style={{
-                 color: value >= maxValue || value <= minValue || maxValue === minValue
-                 || minValue < 0 ? 'red' : ''
+                 color: value >= maxValue || value <= startValue || maxValue === startValue
+                 || startValue < 0 ? 'red' : ''
              }}>
-            {minValue < 0 || maxValue < 0 || maxValue === minValue || minValue > maxValue ? 'Incorrect value!' : value}</div>
+            {ifer()}</div>
         <div className={s.form}>
-            <button disabled={value >= maxValue || minValue < 0}
+            <button disabled={remember||value >= maxValue || startValue < 0 || startValue === maxValue}
                     style={buttonStyle && {background: value >= maxValue ? 'red' : 'green', margin: '10px'}}
                     onClick={incFunc} className={s.button}>inc
             </button>
-            <button disabled={value <= minValue || minValue < 0}
-                    style={buttonStyle && {background: value <= minValue ? 'red' : 'green'}} onClick={decFunc}
+            <button disabled={remember||value <= startValue || startValue < 0 }
+                    style={buttonStyle && {background: value <= startValue || startValue === maxValue || startValue < 0 ? 'red' : 'green'}}
+                    onClick={decFunc}
                     className={s.button}>dec
+            </button>
+            <button onClick={reset} style={{width:'80px'}}
+                     disabled={remember||value===startValue}
+                    className={s.button}>reset
             </button>
         </div>
     </div>
