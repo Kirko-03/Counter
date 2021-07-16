@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <header className="App-header">
        <CountBuilder value={value}  setValue={setValue} remember={remember} setRemember={setRemember} start={start} setStart={setStart} setMax={setMax} max={max} />
+
           <Counter value={value} remember={remember} setValue={setValue} maxValue={max} startValue={start}/>
       </header>
     </div>

@@ -32,7 +32,6 @@ export const SetValue:FC<SetValueType> = ({maxValue,startValue,setRemember,remem
 
     const remFunc=()=>{
         setRemember(false)
-
         setValue(startValue)
     }
     return <div>

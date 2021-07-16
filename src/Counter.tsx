@@ -55,7 +55,9 @@ export const Counter: FC<CounterType> = ({value, setValue, maxValue, startValue,
     return <div className={s.counterForm}>
         <div className={s.value}
              style={{
-                 color: value >= maxValue  || maxValue === startValue
+
+                 // eslint-disable-next-line no-mixed-operators
+                 color: value >= maxValue&&!remember  || maxValue <= startValue||value===startValue&&!remember
                  || startValue < 0 ? 'red' : ''
              }}>
             {scoreboard()}</div>

@@ -1,4 +1,4 @@
-import s from './CountBilder.module.css'
+import s from './Counter.module.css'
 import {MaxValue} from "./MaxValue";
 import {FC} from "react";
 import {SetValue} from './SetValue';

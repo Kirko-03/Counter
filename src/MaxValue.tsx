@@ -1,5 +1,5 @@
 import {ChangeEvent, FC} from "react";
-
+import s from  './CountBilder.module.css'
 type MaxType = {
     max:number
     min:number
@@ -13,7 +13,7 @@ export const MaxValue:FC<MaxType> = ({max,min,setRemember,setMax}) => {
         setMax(+e.currentTarget.value)
         setRemember(true)
     }
-    return <div>
-       Max value <input type={'number'} style={{background:min===max||min>max||max<0?'rebeccapurple':'',borderColor:min===max||min>max||max<0?'red':''}} value={max}  onChange={rememberFunc}/>
+    return <div className={s.nameBoard}>
+       Max value <input type={'number'} className={s.value} style={{background:min===max||min>max||max<0?'rebeccapurple':'cyan',borderColor:min===max||min>max||max<0?'red':''}} value={max}  onChange={rememberFunc}/>
     </div>
 }
