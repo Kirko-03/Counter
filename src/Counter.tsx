@@ -1,6 +1,7 @@
 import s from './Counter.module.css'
 import {FC, useEffect} from "react";
 
+
 type CounterType = {
     value: number
     setValue: (value: number) => void
@@ -37,12 +38,12 @@ export const Counter: FC<CounterType> = ({value, setValue, maxValue, startValue,
             setValue(value - 1)
         }
     }
-    const ifer = () =>{
-        if( startValue < 0||maxValue<=startValue){
-            return 'Incorrect'
+    const scoreboard = () =>{
+        if(startValue < 0||maxValue<=startValue){
+            return 'Incorrect value'
         }
         else if(remember){
-            return 'enter'
+            return "enter values and press 'set'"
         }
         else{
             return  value
@@ -54,10 +55,10 @@ export const Counter: FC<CounterType> = ({value, setValue, maxValue, startValue,
     return <div className={s.counterForm}>
         <div className={s.value}
              style={{
-                 color: value >= maxValue || value <= startValue || maxValue === startValue
+                 color: value >= maxValue  || maxValue === startValue
                  || startValue < 0 ? 'red' : ''
              }}>
-            {ifer()}</div>
+            {scoreboard()}</div>
         <div className={s.form}>
             <button disabled={remember||value >= maxValue || startValue < 0 || startValue === maxValue}
                     style={buttonStyle && {background: value >= maxValue ? 'red' : 'green', margin: '10px'}}
