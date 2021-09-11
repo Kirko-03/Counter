@@ -1,8 +1,8 @@
-import s from './Counter.module.css'
-import {MaxValue} from "./MaxValue";
+import s from './../Counter/Counter.module.css'
+import {MaxValue} from "./Values/MaxValue";
 import {FC} from "react";
-import {SetValue} from './SetValue';
-import {StartValue} from "./StartValue";
+import {SetValue} from './Values/SetValue';
+import {StartValue} from "./Values/StartValue";
 
 type BuilderType = {
     max: number

@@ -1,5 +1,5 @@
 import {ChangeEvent, FC} from "react";
-import s from  './CountBilder.module.css'
+import s from  './../CountBuilder.module.css'
 type MaxType = {
     max:number
     min:number

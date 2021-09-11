@@ -1,4 +1,4 @@
-import s from './Counter.module.css'
+import s from './../../Counter/Counter.module.css'
 import {FC, useEffect} from "react";
 
 type SetValueType={

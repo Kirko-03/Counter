@@ -64,7 +64,7 @@ export const Counter: FC<CounterType> = ({value, setValue, maxValue, startValue,
         <div className={s.form}>
             <button disabled={remember||value >= maxValue || startValue < 0 || startValue === maxValue}
                     style={buttonStyle && {background: value >= maxValue ? 'red' : 'green', margin: '10px'}}
-                    onClick={incFunc} className={s.button}>inc
+                    onClick={()=>value <= maxValue&&setValue(value + 1)} className={s.button}>inc
             </button>
             <button disabled={remember||value <= startValue || startValue < 0 }
                     style={buttonStyle && {background: value <= startValue || startValue === maxValue || startValue < 0 ? 'red' : 'green'}}
