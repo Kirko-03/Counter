@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
         <CountBuilder
           value={value}
           setValue={setValue}
@@ -29,7 +29,7 @@ function App() {
           maxValue={max}
           startValue={start}
         />
-      </header>
+      </div>
     </div>
   );
 }
